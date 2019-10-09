@@ -1,16 +1,17 @@
 package com.capgemini.cn.erpmanage.service;
 
 import com.capgemini.cn.core.response.DataResponse;
+import com.capgemini.cn.erp.domain.RuleTypeEntity;
 import com.capgemini.cn.erp.domain.SystemBusinessTypeEntity;
 import com.capgemini.cn.erp.vo.SourceSystemVo;
 
 import java.util.List;
 
-public interface SourceSystemService {
+public interface RuleTypeService {
 
-    DataResponse<List<SystemBusinessTypeEntity>> allList();
+    DataResponse<List<RuleTypeEntity>> allList();
 
-    DataResponse<List<SourceSystemVo>> getConditions(SourceSystemVo queryVo);
+
 
 
 }
