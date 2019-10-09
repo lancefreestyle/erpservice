@@ -16,6 +16,7 @@ public class RevenueShareDataEntity {
     private String productGroupItemId;
     private String traceId;
     private BigDecimal traceAmount;
+    private BigDecimal settlementAmount;
     private String payType;
     private String batchId;
     private Timestamp importDate;
@@ -103,6 +104,16 @@ public class RevenueShareDataEntity {
     }
 
     @Basic
+    @Column(name = "settlement_amount")
+    public BigDecimal getSettlementAmount() {
+        return settlementAmount;
+    }
+
+    public void setSettlementAmount(BigDecimal settlementAmount) {
+        this.settlementAmount = settlementAmount;
+    }
+
+    @Basic
     @Column(name = "pay_type")
     public String getPayType() {
         return payType;
@@ -165,6 +176,7 @@ public class RevenueShareDataEntity {
                 Objects.equals(productGroupItemId, that.productGroupItemId) &&
                 Objects.equals(traceId, that.traceId) &&
                 Objects.equals(traceAmount, that.traceAmount) &&
+                Objects.equals(settlementAmount, that.settlementAmount) &&
                 Objects.equals(payType, that.payType) &&
                 Objects.equals(batchId, that.batchId) &&
                 Objects.equals(importDate, that.importDate) &&
@@ -174,6 +186,6 @@ public class RevenueShareDataEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, revenueShareRuleId, partnerGroupId, productGroupId, partnerGroupItemId, productGroupItemId, traceId, traceAmount, payType, batchId, importDate, traceDate, updateDate);
+        return Objects.hash(id, revenueShareRuleId, partnerGroupId, productGroupId, partnerGroupItemId, productGroupItemId, traceId, traceAmount, settlementAmount, payType, batchId, importDate, traceDate, updateDate);
     }
 }

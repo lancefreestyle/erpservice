@@ -21,7 +21,7 @@ public class RevenueSaleDataEntity {
     private int shareCount;
     private String payType;
     private String businessDepartment;
-    private Timestamp profitCenter;
+    private String profitCenter;
     private Timestamp traceBeginDate;
     private Timestamp traceEndDate;
     private Timestamp tallyBeginDate;
@@ -161,11 +161,11 @@ public class RevenueSaleDataEntity {
 
     @Basic
     @Column(name = "profit_center")
-    public Timestamp getProfitCenter() {
+    public String getProfitCenter() {
         return profitCenter;
     }
 
-    public void setProfitCenter(Timestamp profitCenter) {
+    public void setProfitCenter(String profitCenter) {
         this.profitCenter = profitCenter;
     }
 
