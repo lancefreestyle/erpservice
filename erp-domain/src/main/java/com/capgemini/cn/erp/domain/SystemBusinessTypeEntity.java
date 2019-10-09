@@ -5,11 +5,13 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "system_business_type", schema = "ubr_service_db1", catalog = "")
+@Table(name = "system_business_type", schema = "ubr_service_db1")
 public class SystemBusinessTypeEntity {
     private String id;
-    private String sourceSystemId;
-    private String businessTypeId;
+
+    private SourceSystemEntity sourceSystemEntity;
+
+    private BusinessTypeEntity businessTypeEntity;
     private Timestamp createDate;
     private Timestamp updateDate;
 
@@ -23,24 +25,23 @@ public class SystemBusinessTypeEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "source_system_id")
-    public String getSourceSystemId() {
-        return sourceSystemId;
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "source_system_id")
+    public SourceSystemEntity getSourceSystemEntity() {
+        return sourceSystemEntity;
     }
 
-    public void setSourceSystemId(String sourceSystemId) {
-        this.sourceSystemId = sourceSystemId;
+    public void setSourceSystemEntity(SourceSystemEntity sourceSystemEntity) {
+        this.sourceSystemEntity = sourceSystemEntity;
+    }
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "business_type_id")
+    public BusinessTypeEntity getBusinessTypeEntity() {
+        return businessTypeEntity;
     }
 
-    @Basic
-    @Column(name = "business_type_id")
-    public String getBusinessTypeId() {
-        return businessTypeId;
-    }
-
-    public void setBusinessTypeId(String businessTypeId) {
-        this.businessTypeId = businessTypeId;
+    public void setBusinessTypeEntity(BusinessTypeEntity businessTypeEntity) {
+        this.businessTypeEntity = businessTypeEntity;
     }
 
     @Basic
@@ -69,14 +70,14 @@ public class SystemBusinessTypeEntity {
         if (o == null || getClass() != o.getClass()) return false;
         SystemBusinessTypeEntity that = (SystemBusinessTypeEntity) o;
         return Objects.equals(id, that.id) &&
-                Objects.equals(sourceSystemId, that.sourceSystemId) &&
-                Objects.equals(businessTypeId, that.businessTypeId) &&
+                Objects.equals(sourceSystemEntity, that.sourceSystemEntity) &&
+                Objects.equals(businessTypeEntity, that.businessTypeEntity) &&
                 Objects.equals(createDate, that.createDate) &&
                 Objects.equals(updateDate, that.updateDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, sourceSystemId, businessTypeId, createDate, updateDate);
+        return Objects.hash(id, sourceSystemEntity, businessTypeEntity, createDate, updateDate);
     }
 }

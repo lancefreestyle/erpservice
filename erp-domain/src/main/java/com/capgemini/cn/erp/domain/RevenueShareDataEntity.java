@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "revenue_share_data", schema = "ubr_service_db1", catalog = "")
+@Table(name = "revenue_share_data", schema = "ubr_service_db1")
 public class RevenueShareDataEntity {
     private String id;
     private String revenueShareRuleId;
