@@ -16,7 +16,6 @@ public class RevenueShareDataEntity {
     private String productGroupItemId;
     private String traceId;
     private BigDecimal traceAmount;
-    private BigDecimal settlementAmount;
     private String payType;
     private String batchId;
     private Timestamp importDate;
@@ -102,16 +101,6 @@ public class RevenueShareDataEntity {
 
     public void setTraceAmount(BigDecimal traceAmount) {
         this.traceAmount = traceAmount;
-    }
-
-    @Basic
-    @Column(name = "settlement_amount")
-    public BigDecimal getSettlementAmount() {
-        return settlementAmount;
-    }
-
-    public void setSettlementAmount(BigDecimal settlementAmount) {
-        this.settlementAmount = settlementAmount;
     }
 
     @Basic

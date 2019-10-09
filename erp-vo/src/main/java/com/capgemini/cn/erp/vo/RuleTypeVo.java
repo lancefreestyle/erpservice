@@ -4,12 +4,13 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Data
-public class SourceSystemVo implements Serializable {
+public class RuleTypeVo implements Serializable {
     private String id;
-    private String sourceSystemCode;
-    private String sourceSystemName;
+    private String ruleTypeName;
+    private String ruleTypeDesc;
     private Timestamp createDate;
     private Timestamp updateDate;
 }
