@@ -3,6 +3,8 @@ package com.capgemini.cn.erpmanage.resource;
 import com.capgemini.cn.core.response.DataResponse;
 import com.capgemini.cn.erp.domain.RuleTypeEntity;
 import com.capgemini.cn.erp.domain.SystemBusinessTypeEntity;
+import com.capgemini.cn.erp.vo.RuleTypeVo;
+import com.capgemini.cn.erp.vo.SystemBusinessTypeVo;
 import com.capgemini.cn.erpmanage.service.RuleTypeService;
 import com.capgemini.cn.erpmanage.service.SourceSystemService;
 import io.swagger.annotations.ApiOperation;
@@ -24,15 +26,16 @@ public class SourceSystemResource {
 
     @ApiOperation(value = "list")
     @GetMapping(value = "list", produces = "application/json")
-    public DataResponse<List<SystemBusinessTypeEntity>> allList(){
+    public DataResponse<List<SystemBusinessTypeVo>> allList(){
 
-        return sourceSystemService.allList();
+        return sourceSystemService.alllist();
     }
     @ApiOperation(value = "allList")
     @GetMapping(value = "allList", produces = "application/json")
-    public DataResponse<List<RuleTypeEntity>> typeAllList(){
+    public DataResponse<List<RuleTypeVo>> typeAllList(){
 
-
-        return ruleTypeService.allList();
+        DataResponse<List<RuleTypeVo>> response=new DataResponse<>();
+        response.setResponse(ruleTypeService.allList());
+        return response;
     }
 }
