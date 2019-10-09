@@ -44,7 +44,7 @@ spring:
       connection-timeout: 2000
       maximum-pool-size: 20
       type: com.alibaba.druid.pool.DruidDataSource
-      url: jdbc:mysql://localhost:3306/ubr_service_db1?serverTimezone=Asia/Shanghai&useSSL=false&zeroDateTimeBehavior=convertToNull&characterEncoding=utf-8
+      url: jdbc:mysql://47.100.174.173:3306/ubr_service_db1?serverTimezone=Asia/Shanghai&useSSL=false&zeroDateTimeBehavior=convertToNull&characterEncoding=utf-8
       #url: jdbc:mysql://localhost:3306/demo?serverTimezone=Asia/Shanghai&useSSL=false&zeroDateTimeBehavior=convertToNull&characterEncoding=utf-8
       username: root
       password: hqyc_demo2
