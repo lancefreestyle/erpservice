@@ -175,7 +175,6 @@ public class RevenueShareDataEntity {
                 Objects.equals(productGroupItemId, that.productGroupItemId) &&
                 Objects.equals(traceId, that.traceId) &&
                 Objects.equals(traceAmount, that.traceAmount) &&
-                Objects.equals(settlementAmount, that.settlementAmount) &&
                 Objects.equals(payType, that.payType) &&
                 Objects.equals(batchId, that.batchId) &&
                 Objects.equals(importDate, that.importDate) &&
