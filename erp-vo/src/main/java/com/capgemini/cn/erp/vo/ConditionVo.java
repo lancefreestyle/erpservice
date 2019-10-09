@@ -1,8 +1,11 @@
 package com.capgemini.cn.erp.vo;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.List;
 
+@Data
 public class ConditionVo implements Serializable {
 
     private String id;

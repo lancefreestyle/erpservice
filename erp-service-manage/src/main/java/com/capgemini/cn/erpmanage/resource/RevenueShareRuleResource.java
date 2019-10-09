@@ -6,8 +6,7 @@ import com.capgemini.cn.erp.domain.BusinessTypeEntity;
 import com.capgemini.cn.erp.domain.SourceSystemEntity;
 import com.capgemini.cn.erp.domain.SystemBusinessTypeEntity;
 import com.capgemini.cn.erp.vo.*;
-import com.capgemini.cn.erpmanage.service.DataTemplateService;
-import com.capgemini.cn.erpmanage.service.SourceSystemService;
+import com.capgemini.cn.erpmanage.service.*;
 import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -25,6 +24,14 @@ public class RevenueShareRuleResource extends BaseController {
     private SourceSystemService sourceSystemService;
     @Autowired
     private DataTemplateService dataTemplateService;
+    @Autowired
+    private ConditionService conditionService;
+    @Autowired
+    private AmountCalculationService amountCalculationService;
+    @Autowired
+    private PartnerGroupService partnerGroupService;
+    @Autowired
+    private ProductGroupService productGroupService;
 
     @ApiOperation(value = "list")
     @GetMapping(value = "list", produces = "application/json")
@@ -37,10 +44,17 @@ public class RevenueShareRuleResource extends BaseController {
         List<DataTemplateVo> dataTemplateVos = dataTemplateService.list(new DataTemplateQueryVo()).getResponse();
         vo.setDataTemplateVos(dataTemplateVos);
 
-        List<ConditionRuleVo> conditionRuleVos = Lists.newArrayList();
-        List<AmountCalculationVo> amountCalculationVos = Lists.newArrayList();
-        List<PartnerGroupVo> partnerGroupVos = Lists.newArrayList();
-        List<ProductGroupVo> productGroupVos = Lists.newArrayList();
+        List<ConditionVo>  conditionVos= conditionService.list(new ConditionQueryVo()).getResponse();
+        vo.setConditionVos(conditionVos);
+
+        List<AmountCalculationVo> amountCalculationVos  = amountCalculationService.list(new AmountCalculationQueryVo()).getResponse();
+        vo.setAmountCalculationVos(amountCalculationVos);
+
+        List<PartnerGroupVo> partnerGroupVos = partnerGroupService.list(new PartnerGroupQueryVo()).getResponse();
+        vo.setPartnerGroupVos(partnerGroupVos);
+
+        List<ProductGroupVo> productGroupVos = productGroupService.list(new ProductGroupQueryVo()).getResponse();
+        vo.setProductGroupVos(productGroupVos);
 
         DataResponse<RevenueShareRuleQueryOutVo> result = new DataResponse<RevenueShareRuleQueryOutVo>();
         result.setResponse(vo);

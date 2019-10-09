@@ -13,7 +13,7 @@ import java.util.List;
 public class RevenueShareRuleQueryOutVo implements Serializable {
     private List<SystemBusinessTypeVo> systemBusinessTypeVos;
     private List<DataTemplateVo> dataTemplateVos;
-    private List<ConditionRuleVo> conditionRuleVos;
+    private List<ConditionVo> conditionVos;
     private List<AmountCalculationVo> amountCalculationVos;
     private List<PartnerGroupVo> partnerGroupVos;
     private List<ProductGroupVo> productGroupVos;
