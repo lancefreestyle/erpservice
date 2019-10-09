@@ -2,9 +2,7 @@ package com.capgemini.cn.erpmanage.service.impl;
 
 import com.capgemini.cn.core.response.DataResponse;
 import com.capgemini.cn.erp.domain.*;
-import com.capgemini.cn.erp.vo.SourceSystemVO;
 import com.capgemini.cn.erpmanage.service.SourceSystemService;
-import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +34,7 @@ public class SourceSystemServiceImpl implements SourceSystemService {
     }
 
     @Override
-    public DataResponse<List<SourceSystemVO>> getConditions(SourceSystemVO queryVo) {
+    public DataResponse<List<SourceSystemVo>> getConditions(SourceSystemVo queryVo) {
         return null;
     }
 }
