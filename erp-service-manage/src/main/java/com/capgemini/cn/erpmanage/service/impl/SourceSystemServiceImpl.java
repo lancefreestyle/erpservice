@@ -27,10 +27,10 @@ public class SourceSystemServiceImpl implements SourceSystemService {
         JPAQuery<SystemBusinessTypeEntity>  jpaQuery=new JPAQuery<SystemBusinessTypeEntity>(em).from(qSystemBusinessTypeEntity);
         jpaQuery.orderBy(qSystemBusinessTypeEntity.id.asc());
         List<SystemBusinessTypeEntity> typeEntityList = jpaQuery.fetch();
-//        for (SystemBusinessTypeEntity typeEntity : typeEntityList) {
-//            System.out.println(typeEntity.getSourceSystemEntity().getSourceSystemName());
-//            System.out.println(typeEntity.getBusinessTypeEntity().getBusinessTypeName());
-//        }
+        for (SystemBusinessTypeEntity typeEntity : typeEntityList) {
+            System.out.println(typeEntity.getSourceSystemEntity().getSourceSystemName());
+            System.out.println(typeEntity.getBusinessTypeEntity().getBusinessTypeName());
+        }
         result.setResponse(typeEntityList);
         return result;
     }
