@@ -22,6 +22,7 @@ public class RevenueShareDataEntity {
     private Timestamp importDate;
     private Timestamp traceDate;
     private Timestamp updateDate;
+    private BigDecimal settlementAmount;
 
     @Id
     @Column(name = "id")
@@ -163,6 +164,15 @@ public class RevenueShareDataEntity {
         this.updateDate = updateDate;
     }
 
+    @Basic
+    @Column(name = "settlement_amount")
+    public BigDecimal getSettlementAmount() {
+        return settlementAmount;
+    }
+
+    public void setSettlementAmount(BigDecimal settlementAmount) {
+        this.settlementAmount = settlementAmount;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -181,6 +191,7 @@ public class RevenueShareDataEntity {
                 Objects.equals(batchId, that.batchId) &&
                 Objects.equals(importDate, that.importDate) &&
                 Objects.equals(traceDate, that.traceDate) &&
+                Objects.equals(settlementAmount, that.settlementAmount) &&
                 Objects.equals(updateDate, that.updateDate);
     }
 

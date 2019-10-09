@@ -10,11 +10,12 @@ import java.util.Objects;
 public class RevenueSaleDataEntity {
     private String id;
     private String systemBusinessTypeId;
-    private Object status;
+    private String status;
     private String productGroupId;
     private String productGroupItemId;
     private String traceId;
     private BigDecimal traceAmount;
+
     private BigDecimal calculatedAmount;
     private BigDecimal calculatAmount;
     private int sharedCount;
@@ -51,11 +52,11 @@ public class RevenueSaleDataEntity {
 
     @Basic
     @Column(name = "status")
-    public Object getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Object status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -218,6 +219,7 @@ public class RevenueSaleDataEntity {
     public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
     }
+
 
     @Basic
     @Column(name = "update_date")

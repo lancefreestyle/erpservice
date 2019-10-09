@@ -14,9 +14,9 @@ public class RevenueShareRuleEntity {
     private String amountCalculationId;
     private String partnerGroupId;
     private String productGroupId;
-    private Object settlementPeriod;
-    private Object autoClear;
-    private Object autoOffset;
+    private String settlementPeriod;
+    private int autoClear;
+    private int autoOffset;
     private String remark;
     private Timestamp beginDate;
     private Timestamp endDate;
@@ -95,31 +95,31 @@ public class RevenueShareRuleEntity {
 
     @Basic
     @Column(name = "settlement_period")
-    public Object getSettlementPeriod() {
+    public String getSettlementPeriod() {
         return settlementPeriod;
     }
 
-    public void setSettlementPeriod(Object settlementPeriod) {
+    public void setSettlementPeriod(String settlementPeriod) {
         this.settlementPeriod = settlementPeriod;
     }
 
     @Basic
     @Column(name = "auto_clear")
-    public Object getAutoClear() {
+    public int getAutoClear() {
         return autoClear;
     }
 
-    public void setAutoClear(Object autoClear) {
+    public void setAutoClear(int autoClear) {
         this.autoClear = autoClear;
     }
 
     @Basic
     @Column(name = "auto_offset")
-    public Object getAutoOffset() {
+    public int getAutoOffset() {
         return autoOffset;
     }
 
-    public void setAutoOffset(Object autoOffset) {
+    public void setAutoOffset(int autoOffset) {
         this.autoOffset = autoOffset;
     }
 

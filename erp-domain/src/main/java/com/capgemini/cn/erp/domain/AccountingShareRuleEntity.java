@@ -10,11 +10,11 @@ public class AccountingShareRuleEntity {
     private String id;
     private String ruleTitleId;
     private String ruleTypeId;
-    private Object shareType;
+    private String shareType;
     private Timestamp beginDate;
     private Timestamp endDate;
     private Integer dateFreq;
-    private Object freqType;
+    private String freqType;
     private Timestamp createDate;
     private Timestamp updateDate;
 
@@ -50,11 +50,11 @@ public class AccountingShareRuleEntity {
 
     @Basic
     @Column(name = "share_type")
-    public Object getShareType() {
+    public String getShareType() {
         return shareType;
     }
 
-    public void setShareType(Object shareType) {
+    public void setShareType(String shareType) {
         this.shareType = shareType;
     }
 
@@ -90,11 +90,11 @@ public class AccountingShareRuleEntity {
 
     @Basic
     @Column(name = "freq_type")
-    public Object getFreqType() {
+    public String getFreqType() {
         return freqType;
     }
 
-    public void setFreqType(Object freqType) {
+    public void setFreqType(String freqType) {
         this.freqType = freqType;
     }
 

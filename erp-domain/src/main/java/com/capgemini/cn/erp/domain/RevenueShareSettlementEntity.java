@@ -12,7 +12,7 @@ public class RevenueShareSettlementEntity {
     private String revenueShareDataId;
     private BigDecimal settlementAmount;
     private Timestamp settlementDate;
-    private Object status;
+    private String status;
     private Timestamp createDate;
     private Timestamp updateDate;
 
@@ -58,11 +58,11 @@ public class RevenueShareSettlementEntity {
 
     @Basic
     @Column(name = "status")
-    public Object getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Object status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
