@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "revenue_share_data", schema = "ubr_service_db1", catalog = "")
+@Table(name = "revenue_share_data", schema = "ubr_service_db1")
 public class RevenueShareDataEntity {
     private String id;
     private String revenueShareRuleId;
@@ -21,6 +21,7 @@ public class RevenueShareDataEntity {
     private Timestamp importDate;
     private Timestamp traceDate;
     private Timestamp updateDate;
+    private BigDecimal settlementAmount;
 
     @Id
     @Column(name = "id")
@@ -152,6 +153,15 @@ public class RevenueShareDataEntity {
         this.updateDate = updateDate;
     }
 
+    @Basic
+    @Column(name = "settlement_amount")
+    public BigDecimal getSettlementAmount() {
+        return settlementAmount;
+    }
+
+    public void setSettlementAmount(BigDecimal settlementAmount) {
+        this.settlementAmount = settlementAmount;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
