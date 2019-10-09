@@ -9,12 +9,12 @@ import java.util.Objects;
 @Data
 public class RevenueShareRuleVo implements Serializable {
     private String id;
-    private String ruleTitleId;
-    private String ruleTypeId;
-    private String conditionRuleId;
-    private String amountCalculationId;
-    private String partnerGroupId;
-    private String productGroupId;
+    private RuleTitleVo ruleTitleVo;
+    private RuleTypeVo ruleTypeVo;
+    private ConditionRuleVo conditionRuleVo;
+    private AmountCalculationVo amountCalculationVo;
+    private PartnerGroupVo partnerGroupVo;
+    private ProductGroupVo productGroupVo;
     private String settlementPeriod;
     private int autoClear;
     private int autoOffset;

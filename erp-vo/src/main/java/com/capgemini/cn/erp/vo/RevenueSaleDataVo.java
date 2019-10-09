@@ -10,10 +10,10 @@ import java.util.Objects;
 @Data
 public class RevenueSaleDataVo implements Serializable {
     private String id;
-    private String systemBusinessTypeId;
+    private SystemBusinessTypeVo systemBusinessTypeVo;
     private String status;
-    private String productGroupId;
-    private String productGroupItemId;
+    private ProductGroupVo productGroupVo;
+    private ProductGroupItemVo productGroupItemVo;
     private String traceId;
     private BigDecimal traceAmount;
     private BigDecimal calculatedAmount;

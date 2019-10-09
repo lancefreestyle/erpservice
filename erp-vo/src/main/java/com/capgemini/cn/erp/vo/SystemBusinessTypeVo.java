@@ -9,8 +9,8 @@ import java.util.Objects;
 @Data
 public class SystemBusinessTypeVo implements Serializable{
     private String id;
-    private String sourceSystemId;
-    private String businessTypeId;
+    private SourceSystemVo sourceSystemVo;
+    private BusinessTypeVo businessTypeVo;
     private Timestamp createDate;
     private Timestamp updateDate;
 }

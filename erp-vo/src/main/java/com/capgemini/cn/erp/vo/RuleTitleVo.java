@@ -9,8 +9,8 @@ import java.util.Objects;
 @Data
 public class RuleTitleVo implements Serializable {
     private String id;
-    private String systemBusinessTypeId;
-    private String dataTemplateId;
+    private SystemBusinessTypeVo systemBusinessTypeVo;
+    private DataTemplateVo dataTemplateVo;
     private Timestamp beginDate;
     private Timestamp endDate;
     private Timestamp createDate;

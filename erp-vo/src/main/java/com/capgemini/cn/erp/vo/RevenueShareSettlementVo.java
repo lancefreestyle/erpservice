@@ -10,7 +10,7 @@ import java.util.Objects;
 @Data
 public class RevenueShareSettlementVo implements Serializable {
     private String id;
-    private String revenueShareDataId;
+    private RevenueShareDataVo revenueShareDataVo;
     private BigDecimal settlementAmount;
     private Timestamp settlementDate;
     private String status;

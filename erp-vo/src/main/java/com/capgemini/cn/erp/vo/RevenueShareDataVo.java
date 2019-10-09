@@ -10,11 +10,11 @@ import java.util.Objects;
 @Data
 public class RevenueShareDataVo implements Serializable {
     private String id;
-    private String revenueShareRuleId;
-    private String partnerGroupId;
-    private String productGroupId;
-    private String partnerGroupItemId;
-    private String productGroupItemId;
+    private RevenueShareRuleVo revenueShareRuleVo;
+    private PartnerGroupVo partnerGroupVo;
+    private ProductGroupVo productGroupVo;
+    private PartnerGroupItemVo partnerGroupItemVo;
+    private ProductGroupItemVo productGroupItemVo;
     private String traceId;
     private BigDecimal traceAmount;
     private BigDecimal settlementAmount;

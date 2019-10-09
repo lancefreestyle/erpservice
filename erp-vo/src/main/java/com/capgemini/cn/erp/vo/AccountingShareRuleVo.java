@@ -9,8 +9,8 @@ import java.util.Objects;
 @Data
 public class AccountingShareRuleVo implements Serializable {
     private String id;
-    private String ruleTitleId;
-    private String ruleTypeId;
+    private RuleTitleVo ruleTitleVo;
+    private RuleTypeVo ruleTypeVo;
     private String shareType;
     private Timestamp beginDate;
     private Timestamp endDate;
