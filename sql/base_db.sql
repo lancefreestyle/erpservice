@@ -406,6 +406,152 @@ CREATE TABLE `reconciliation_rule_item`  (
 ) ENGINE=InnoDB;
 
 
+##  dupei wu
+
+
+DROP TABLE IF EXISTS `source_system`; ##来源系统
+CREATE TABLE `source_system`  (
+  `id` varchar(36) NOT NULL COMMENT '主键id',
+  `source_system_code` varchar(100) NOT NULL  COMMENT '来源系统代码',
+  `source_system_name` varchar(100) NOT NULL COMMENT '来源系统名称',
+  `create_date` datetime DEFAULT NULL COMMENT '创建日期',
+  `update_date` datetime DEFAULT NULL COMMENT '修改日期',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `business_type`; ##业务类型
+CREATE TABLE `business_type`  (
+  `id` varchar(36) NOT NULL COMMENT '主键id',
+  `business_type_code` varchar(100) NOT NULL  COMMENT '业务类型代码',
+  `business_type_name` varchar(100) NOT NULL COMMENT '业务类型名称',
+  `create_date` datetime DEFAULT NULL COMMENT '创建日期',
+  `update_date` datetime DEFAULT NULL COMMENT '修改日期',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `system_business_type`; ##来源系统业务类型
+CREATE TABLE `system_business_type`  (
+  `id` varchar(36) NOT NULL COMMENT '主键id',
+  `source_system_id` varchar(36) NOT NULL  COMMENT '来源系统外键',
+  `business_type_id` varchar(36) NOT NULL COMMENT '业务类型外键',
+  `create_date` datetime DEFAULT NULL COMMENT '创建日期',
+  `update_date` datetime DEFAULT NULL COMMENT '修改日期',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `rule_title`; ##规则标题
+CREATE TABLE `rule_title`  (
+  `id` varchar(36) NOT NULL COMMENT '主键id',
+  `system_business_type_id` varchar(36) DEFAULT NULL  COMMENT '来源系统业务类型外键',
+  `data_template_id` varchar(36) DEFAULT NULL COMMENT '模版外键',
+  `begin_date` datetime DEFAULT NULL COMMENT '启用日期',
+  `end_date` datetime DEFAULT NULL COMMENT '失效日期',
+  `create_date` datetime DEFAULT NULL COMMENT '创建日期',
+  `update_date` datetime DEFAULT NULL COMMENT '修改日期',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `rule_type`; ##规则类型
+CREATE TABLE `rule_type`  (
+  `id` varchar(36) NOT NULL COMMENT '主键id',
+  `rule_type_name` varchar(100) DEFAULT NULL  COMMENT '规则类型名称',
+  `rule_type_desc` varchar(256) DEFAULT NULL COMMENT '规则类型说明',
+  `create_date` datetime DEFAULT NULL COMMENT '创建日期',
+  `update_date` datetime DEFAULT NULL COMMENT '修改日期',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `revenue_share_rule`; ##收入共享规则
+CREATE TABLE `revenue_share_rule`  (
+  `id` varchar(36) NOT NULL COMMENT '主键id',
+  `rule_title_id` varchar(36) DEFAULT NULL  COMMENT '规则标题外键',
+  `rule_type_id` varchar(36) DEFAULT NULL COMMENT '规则类型外键',
+  `condition_rule_id` varchar(36) DEFAULT NULL  COMMENT '条件规则外键',
+  `amount_calculation_id` varchar(36) DEFAULT NULL COMMENT '金额规则外键',
+  `partner_group_id` varchar(36) DEFAULT NULL COMMENT '合伙人组外键',
+  `product_group_id` varchar(36) DEFAULT NULL COMMENT '产品组外键',
+  `settlement_period` enum('MONTH','QUARTER','YEAR') NOT NULL DEFAULT 'MONTH' COMMENT '结算周期',
+  `auto_clear` enum('0','1') NOT NULL DEFAULT '1' COMMENT '自动结算',
+  `auto_offset` enum('0','1') NOT NULL DEFAULT '1' COMMENT '自动冲销',
+  `remark` varchar(256) NOT NULL COMMENT '备注',
+  `begin_date` datetime DEFAULT NULL COMMENT '启用日期',
+  `end_date` datetime DEFAULT NULL COMMENT '失效日期',
+  `create_date` datetime DEFAULT NULL COMMENT '创建日期',
+  `update_date` datetime DEFAULT NULL COMMENT '修改日期',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `revenue_share_data`; ##收入共享数据
+CREATE TABLE `revenue_share_data`  (
+  `id` varchar(36) NOT NULL COMMENT '主键id',
+  `revenue_share_rule_id` varchar(36) DEFAULT NULL  COMMENT '收入共享规则外键',
+  `partner_group_id` varchar(36) DEFAULT NULL COMMENT '合伙人组外键',
+  `product_group_id` varchar(36) DEFAULT NULL COMMENT '产品组外键',
+  `partner_group_item_id` varchar(36) DEFAULT NULL COMMENT '合伙人外键',
+  `product_group_item_id` varchar(36) DEFAULT NULL COMMENT '产品外键',
+  `trace_id` varchar(100) NOT NULL COMMENT '交易ID',
+  `trace_amount` decimal(18,2) NOT NULL COMMENT '交易金额',
+  `pay_type` varchar(100) NOT NULL COMMENT '支付方式',
+  `batch_id` varchar(100) NOT NULL COMMENT '导入批次',
+  `import_date` datetime DEFAULT NULL COMMENT '导入日期',
+  `trace_date` datetime DEFAULT NULL COMMENT '交易日期',
+  `update_date` datetime DEFAULT NULL COMMENT '修改日期',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `revenue_share_settlement`; ##收入共享结算
+CREATE TABLE `revenue_share_settlement`  (
+  `id` varchar(36) NOT NULL COMMENT '主键id',
+  `revenue_share_data_id` varchar(36) DEFAULT NULL  COMMENT '收入共享数据外键',
+  `settlement_amount` decimal(18,2) NOT NULL COMMENT '结算金额',
+  `settlement_date` datetime DEFAULT NULL COMMENT '结算日期',
+  `status` enum('ESTIMATE','CONFIRM_ESTIMATE','CONFIRM_SETTLEMENT','REVERSE') NOT NULL DEFAULT 'ESTIMATE' COMMENT '状态',
+  `create_date` datetime DEFAULT NULL COMMENT '创建日期',
+  `update_date` datetime DEFAULT NULL COMMENT '修改日期',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `accounting_share_rule`; ##会计分摊规则
+CREATE TABLE `accounting_share_rule`  (
+  `id` varchar(36) NOT NULL COMMENT '主键id',
+  `rule_title_id` varchar(36) DEFAULT NULL  COMMENT '规则标题外键',
+  `rule_type_id` varchar(36) DEFAULT NULL COMMENT '规则类型外键',
+  `share_type` enum('FREQ','PERIOD') NOT NULL DEFAULT 'PERIOD' COMMENT '分摊类型',
+  `begin_date` datetime DEFAULT NULL COMMENT '开始日期',
+  `end_date` datetime DEFAULT NULL COMMENT '结束日期',
+  `date_freq` int DEFAULT NULL COMMENT '第几日',
+  `freq_type` enum('WEEK','MONTH','YEAR') DEFAULT NULL COMMENT '频率类型',
+  `create_date` datetime DEFAULT NULL COMMENT '创建日期',
+  `update_date` datetime DEFAULT NULL COMMENT '修改日期',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `revenue_sale_data`; ##收入销售数据
+CREATE TABLE `revenue_sale_data`  (
+  `id` varchar(36) NOT NULL COMMENT '主键id',
+  `system_business_type_id` varchar(36) DEFAULT NULL  COMMENT '来源系统业务类型外键',
+  `status` enum('CONFIRM','PART_CONFIRM','UNCONFIRM') NOT NULL DEFAULT 'UNCONFIRM' COMMENT '状态',
+  `product_group_id` varchar(36) DEFAULT NULL COMMENT '产品组外键',
+  `product_group_item_id` varchar(36) DEFAULT NULL COMMENT '产品外键',
+  `trace_id` varchar(100) NOT NULL COMMENT '交易ID',
+  `trace_amount` decimal(18,2) NOT NULL COMMENT '交易金额',
+  `calculated_amount` decimal(18,2) NOT NULL COMMENT '已计入收入',
+  `calculat_amount` decimal(18,2) NOT NULL COMMENT '未计入收入',
+  `shared_count` int NOT NULL COMMENT '已分摊次数',
+  `share_count` int NOT NULL COMMENT '未分摊次数',
+  `pay_type` varchar(100) NOT NULL COMMENT '支付方式',
+  `business_department` varchar(100) NOT NULL COMMENT '业务部门',
+  `profit_center` datetime DEFAULT NULL COMMENT '利润中心',
+  `trace_begin_date` datetime DEFAULT NULL COMMENT '交易开始日期',
+  `trace_end_date` datetime DEFAULT NULL COMMENT '交易结束日期',
+  `tally_begin_date` datetime DEFAULT NULL COMMENT '记账开始日期',
+  `tally_end_date` datetime DEFAULT NULL COMMENT '记账结束日期',
+  `create_date` datetime DEFAULT NULL COMMENT '创建日期',
+  `update_date` datetime DEFAULT NULL COMMENT '修改日期',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB;
+
+
 
 
 
