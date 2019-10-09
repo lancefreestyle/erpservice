@@ -1,0 +1,110 @@
+spring:
+  # PROFILES
+  profiles:
+    active: local
+  # IDENTITY
+  application:
+    name: erp-service-manage
+  # FILE ENCODING (FileEncodingApplicationListener)
+  mandatory-file-encoding: utf-8
+  # HTTP encoding (HttpEncodingProperties)
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  # JACKSON (JacksonProperties)
+  jackson:
+      date-format: yyyy-MM-dd HH:mm:ss
+  # REDIS (RedisProperties)
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password: Abcd1234
+    jedis:
+      pool:
+        max-active: 1000
+        max-wait: -1ms
+        max-idle: 10
+        min-idle: 5
+
+  # JPA PROPERTIES
+  jpa:
+    database: MYSQL
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+
+  # DATASOURCE COMMON PROPERTIES
+  datasource:
+    base-db:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      connection-timeout: 2000
+      maximum-pool-size: 20
+      type: com.alibaba.druid.pool.DruidDataSource
+      url: jdbc:mysql://localhost:3306/ubr_service_db1?serverTimezone=Asia/Shanghai&useSSL=false&zeroDateTimeBehavior=convertToNull&characterEncoding=utf-8
+      #url: jdbc:mysql://localhost:3306/demo?serverTimezone=Asia/Shanghai&useSSL=false&zeroDateTimeBehavior=convertToNull&characterEncoding=utf-8
+      username: root
+      password: hqyc_demo2
+      #password: hongqi
+      initialSize: 5
+      minIdle: 0
+      maxActive: 500
+      maxWait: 8000
+      removeAbandoned: true
+      removeAbandonedTimeout: 180
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 'x' FROM DUAL
+      validationQueryTimeout: 3000
+      testWhileIdle: true
+      testOnBorrow: true
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: wall,stat
+      logAbandoned: true
+#      url: jdbc:mysql://localhost:3306/base_db?useSSL=false&zeroDateTimeBehavior=convertToNull&characterEncoding=utf-8
+#      username: root
+#      password: 123456
+
+# EMBEDDED SERVER CONFIGURATION (ServerProperties)
+server:
+  port: 8090
+  servlet:
+    context-path: /
+
+# LOGGING
+logging:
+  level.root: info
+  level.com.capgemini.cn: info
+
+
+# ----------------------------------------
+# API DOCS PROPERTIES
+# ----------------------------------------
+swagger-api:
+  enabled: true
+  pathMapping: ${server.servlet.context-path}
+  title: Basic Management API Docs
+  description:
+  contactName:
+  contactUrl:
+  contactEmail:
+  version: 1.0.0
+
+web-filter:
+  whiteList:
+  - '/api/auth/login'
+  - '/swagger-ui'
+  - '/swagger-resources'
+  - '/webjars'
+  - '/v2/api-docs'
+
+#jwt
+jwt:
+  secret: saptoken@1234
+  # token 过期时间 2个小时
+  expiration: 7200000

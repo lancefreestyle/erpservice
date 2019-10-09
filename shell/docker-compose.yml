@@ -1,0 +1,14 @@
+version: '2.1'
+services:
+  base-erp-service:
+    environment:
+      profile: docker
+      eureka: http://192.168.1.104:30001/eureka/
+      zipkin: http://192.168.1.104:30003
+      redis_host: 192.168.1.104
+      database: jdbc:mysql://192.168.1.104:3306/base_db?useSSL=false&zeroDateTimeBehavior=convertToNull&characterEncoding=utf-8
+    image: middlelayer/basic-erp-service:v1.0
+    volumes: 
+      - /root/logs:/logs    
+    ports:
+      - 10100:10100    

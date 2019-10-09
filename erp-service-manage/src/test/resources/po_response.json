@@ -1,0 +1,23 @@
+{
+    "d": {
+        "__metadata": {
+            "id": "http://54.223.80.88:50000/sap/opu/odata/sap/ZZK_PO_TEST_SRV/POHeadSet('4500000552')",
+            "uri": "http://54.223.80.88:50000/sap/opu/odata/sap/ZZK_PO_TEST_SRV/POHeadSet('4500000552')",
+            "type": "ZZK_PO_TEST_SRV.POHead"
+        },
+        "Ebeln": "4500000552",
+        "Bukrs": "",
+        "Bstyp": "",
+        "Bsart": "",
+        "Bsakz": "",
+        "Loekz": "",
+        "Statu": "",
+        "Aedat": "",
+        "Ernam": "",
+        "Lifnr": "",
+        "Ekorg": "",
+        "Ekgrp": "",
+        "Waers": "",
+        "POHeadToItemNav": null
+    }
+}

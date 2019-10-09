@@ -1,0 +1,58 @@
+docker build -t middlelayer/register:v1.0 .
+docker build -t middlelayer/zipkin:v1.0 .
+docker build -t middlelayer/api-gateway:v1.0 .
+docker build -t middlelayer/basic-service:v1.0 .
+
+
+
+docker-compose -f docker-compose.yml up -d
+docker-compose -f docker-compose.yml stop
+docker-compose -f docker-compose.yml rm
+docker-compose ps
+
+
+docker tag middlelayer/register:v1.0 alexofsky/register:v1.0
+docker tag middlelayer/zipkin:v1.0 alexofsky/zipkin:v1.0
+docker tag middlelayer/api-gateway:v1.0 alexofsky/api-gateway:v1.0
+docker tag middlelayer/basic-service:v1.0 alexofsky/basic-service:v1.0
+docker push alexofsky/register:v1.0 &
+docker push alexofsky/zipkin:v1.0 &
+docker push alexofsky/api-gateway:v1.0 &
+docker push alexofsky/basic-service:v1.0 &
+docker pull
+
+
+
+docker run -d  -e profile=dev -p 30001:30001 -v /root/logs:/logs   middlelayer/register:v1.0
+docker run -d  -e profile=dev -e eureka=http://192.168.1.104:30001/eureka/ -e ipAddress=192.168.1.104 -e redis=192.168.1.104 -p 8080:8080 -v /root/logs:/logs   middlelayer/api-gateway:v1.0
+
+
+docker pull  redis:3.2
+docker run -p 6379:6379 -v /root/redis/data:/data  -d redis:3.2 redis-server --appendonly yes --requirepass "Abcd1234"
+docker exec -it 9319d1f6067e redis-cli -a Abcd1234
+
+
+docker pull mysql:5.6
+docker images |grep mysql
+mkdir -p /root/mysql/data /root/mysql/logs /root/mysql/conf
+docker run -p 3306:3306 -v /root/mysql/conf:/etc/mysql/conf.d -v /root/mysql/logs:/logs -v /root/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.6
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
+flush privileges; 
+
+
+docker run -v /root/rabbitmq/data:/var/lib/rabbitmq -d --hostname my-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+
+
+//kill all running containers with 
+docker kill $(docker ps -q)
+
+//delete all stopped containers with 
+docker rm $(docker ps -a -q)
+
+//delete all images with 
+docker rmi $(docker images -q)
+
+
+
+//docker volume create --opt device=:/root/logs --name logs
+

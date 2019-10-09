@@ -1,0 +1,5 @@
+# LOGGING
+logging:
+  # LOGBACK OUTPUT PATH
+  config: ./cpm-logback-config.xml
+  dir: ./logs/cpm-logs/${spring.application.name}/application/

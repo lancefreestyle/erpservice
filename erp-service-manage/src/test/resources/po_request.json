@@ -1,0 +1,34 @@
+{
+	"Ebeln": "",
+	"Bukrs": "1710",
+	"Bstyp": "F",
+	"Bsart": "NB",
+	"Bsakz": "",
+	"Loekz": "",
+	"Statu": "9",
+	"Aedat": "",
+	"Ernam": "BPINST",
+	"Lifnr": "USSU-VSF04",
+	"Ekorg": "1710",
+	"Ekgrp": "002",
+	"Waers": "USD",
+	"HeadTOItem": {
+		"results": [{
+			"Ebeln": "",
+			"Ebelp": "00001",
+			"Loekz": "",
+			"Txz01": "BKR-300 Handle Bars",
+			"Matnr": "MZ-RM-R300-02",
+			"Ematn": "MZ-RM-R300-02",
+			"Bukrs": "1710",
+			"Werks": "1710",
+			"Lgort": "171C",
+			"Bednr": "",
+			"Matkl": "ZHANDLE",
+			"Ktmng": "0",
+			"Menge": "49",
+			"Meins": "PC",
+			"Netpr": "86.510"
+		}]
+	}
+}
