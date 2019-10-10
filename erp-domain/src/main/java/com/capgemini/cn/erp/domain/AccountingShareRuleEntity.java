@@ -5,11 +5,11 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "accounting_share_rule", schema = "ubr_service_db1", catalog = "")
+@Table(name = "accounting_share_rule", schema = "ubr_service_db1")
 public class AccountingShareRuleEntity {
     private String id;
-    private String ruleTitleId;
-    private String ruleTypeId;
+    private RuleTitleEntity ruleTitle;
+    private RuleTypeEntity ruleType;
     private String shareType;
     private Timestamp beginDate;
     private Timestamp endDate;
@@ -28,25 +28,29 @@ public class AccountingShareRuleEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "rule_title_id")
-    public String getRuleTitleId() {
-        return ruleTitleId;
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "rule_title_id")
+    public RuleTitleEntity getRuleTitle() {
+        return ruleTitle;
     }
 
-    public void setRuleTitleId(String ruleTitleId) {
-        this.ruleTitleId = ruleTitleId;
+    public void setRuleTitle(RuleTitleEntity ruleTitle) {
+        this.ruleTitle = ruleTitle;
     }
 
-    @Basic
-    @Column(name = "rule_type_id")
-    public String getRuleTypeId() {
-        return ruleTypeId;
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "rule_type_id")
+    public RuleTypeEntity getRuleType() {
+        return ruleType;
     }
 
-    public void setRuleTypeId(String ruleTypeId) {
-        this.ruleTypeId = ruleTypeId;
+    public void setRuleType(RuleTypeEntity ruleType) {
+        this.ruleType = ruleType;
     }
+
+
+
+
 
     @Basic
     @Column(name = "share_type")
@@ -124,8 +128,8 @@ public class AccountingShareRuleEntity {
         if (o == null || getClass() != o.getClass()) return false;
         AccountingShareRuleEntity that = (AccountingShareRuleEntity) o;
         return Objects.equals(id, that.id) &&
-                Objects.equals(ruleTitleId, that.ruleTitleId) &&
-                Objects.equals(ruleTypeId, that.ruleTypeId) &&
+                Objects.equals(ruleTitle, that.ruleTitle) &&
+                Objects.equals(ruleType, that.ruleType) &&
                 Objects.equals(shareType, that.shareType) &&
                 Objects.equals(beginDate, that.beginDate) &&
                 Objects.equals(endDate, that.endDate) &&
@@ -137,6 +141,6 @@ public class AccountingShareRuleEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, ruleTitleId, ruleTypeId, shareType, beginDate, endDate, dateFreq, freqType, createDate, updateDate);
+        return Objects.hash(id, ruleTitle, ruleType, shareType, beginDate, endDate, dateFreq, freqType, createDate, updateDate);
     }
 }
