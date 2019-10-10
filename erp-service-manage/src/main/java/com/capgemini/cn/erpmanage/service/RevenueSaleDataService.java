@@ -1,5 +1,7 @@
 package com.capgemini.cn.erpmanage.service;
 
-public interface RevenueSaleDataService {
+import com.capgemini.cn.erp.domain.RevenueSaleDataEntity;
+
+public interface RevenueSaleDataService extends IBaseService<RevenueSaleDataEntity, String> {
 
 }
