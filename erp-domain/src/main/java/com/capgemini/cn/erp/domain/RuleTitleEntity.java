@@ -8,8 +8,8 @@ import java.util.Objects;
 @Table(name = "rule_title", schema = "ubr_service_db1", catalog = "")
 public class RuleTitleEntity {
     private String id;
-    private String systemBusinessTypeId;
-    private String dataTemplateId;
+    private SystemBusinessTypeEntity systemBusinessType;
+    private DataTemplate dataTemplate;
     private Timestamp beginDate;
     private Timestamp endDate;
     private Timestamp createDate;
@@ -25,25 +25,26 @@ public class RuleTitleEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "system_business_type_id")
-    public String getSystemBusinessTypeId() {
-        return systemBusinessTypeId;
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "system_business_type_id")
+    public SystemBusinessTypeEntity getSystemBusinessType() {
+        return systemBusinessType;
     }
 
-    public void setSystemBusinessTypeId(String systemBusinessTypeId) {
-        this.systemBusinessTypeId = systemBusinessTypeId;
+    public void setSystemBusinessType(SystemBusinessTypeEntity systemBusinessType) {
+        this.systemBusinessType = systemBusinessType;
     }
 
-    @Basic
-    @Column(name = "data_template_id")
-    public String getDataTemplateId() {
-        return dataTemplateId;
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "data_template_id")
+    public DataTemplate getDataTemplate() {
+        return dataTemplate;
     }
 
-    public void setDataTemplateId(String dataTemplateId) {
-        this.dataTemplateId = dataTemplateId;
+    public void setDataTemplate(DataTemplate dataTemplate) {
+        this.dataTemplate = dataTemplate;
     }
+
 
     @Basic
     @Column(name = "begin_date")
@@ -91,8 +92,8 @@ public class RuleTitleEntity {
         if (o == null || getClass() != o.getClass()) return false;
         RuleTitleEntity that = (RuleTitleEntity) o;
         return Objects.equals(id, that.id) &&
-                Objects.equals(systemBusinessTypeId, that.systemBusinessTypeId) &&
-                Objects.equals(dataTemplateId, that.dataTemplateId) &&
+                Objects.equals(systemBusinessType, that.systemBusinessType) &&
+                Objects.equals(dataTemplate, that.dataTemplate) &&
                 Objects.equals(beginDate, that.beginDate) &&
                 Objects.equals(endDate, that.endDate) &&
                 Objects.equals(createDate, that.createDate) &&
@@ -101,6 +102,6 @@ public class RuleTitleEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, systemBusinessTypeId, dataTemplateId, beginDate, endDate, createDate, updateDate);
+        return Objects.hash(id, systemBusinessType, dataTemplate, beginDate, endDate, createDate, updateDate);
     }
 }
