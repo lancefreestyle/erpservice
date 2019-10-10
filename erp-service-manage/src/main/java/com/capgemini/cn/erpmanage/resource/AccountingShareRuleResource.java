@@ -56,7 +56,7 @@ public class AccountingShareRuleResource extends BaseController {
     }
 
     @ApiOperation(value = "delete/{id}")
-    @GetMapping(value = "delete/{id}", produces = "application/json")
+    @DeleteMapping(value = "delete/{id}", produces = "application/json")
     public DataResponse delete(
             @PathVariable(value = "id", required = true) String id) {
         return accountingShareRuleService.delete(id);
