@@ -3,9 +3,7 @@ package com.capgemini.cn.erpmanage.resource;
 import com.capgemini.cn.core.commons.BaseController;
 import com.capgemini.cn.core.response.DataResponse;
 import com.capgemini.cn.erp.vo.*;
-import com.capgemini.cn.erpmanage.service.AccountingShareRuleService;
-import com.capgemini.cn.erpmanage.service.DataTemplateService;
-import com.capgemini.cn.erpmanage.service.SourceSystemService;
+import com.capgemini.cn.erpmanage.service.*;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +43,7 @@ public class AccountingShareRuleResource extends BaseController {
     @PostMapping(value = "create", consumes = "application/json", produces = "application/json")
     public DataResponse create(
             @ApiParam(value = "接收数据参数", required = true) @RequestBody @Valid AccountingShareRuleVo vo) {
-        // TODO
-        return null;
+        return accountingShareRuleService.save(vo);
     }
 
     @ApiOperation(value = "list")
