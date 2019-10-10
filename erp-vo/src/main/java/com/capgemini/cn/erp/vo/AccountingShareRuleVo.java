@@ -16,8 +16,8 @@ public class AccountingShareRuleVo implements Serializable {
     private RuleTitleVo ruleTitleVo;
     private RuleTypeVo ruleTypeVo;
     private String shareType;
-    private Timestamp beginDate;
-    private Timestamp endDate;
+    private String beginDate;
+    private String endDate;
     private Integer dateFreq;
     private String freqType;
     private Timestamp createDate;
