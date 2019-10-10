@@ -8,6 +8,7 @@ import com.capgemini.cn.erpmanage.util.DateUtil;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +80,7 @@ public class AccountingShareRuleServiceImpl extends BaseService<QAccountingShare
     }
 
     @Override
+    @Transactional
     public DataResponse<String> delete(String id) {
         AccountingShareRuleEntity shareRuleEntity = super.selectListById(id);
         em.remove(shareRuleEntity);

@@ -26,6 +26,7 @@ public abstract class BaseService<T extends EntityPathBase<E>, E> implements IBa
 
     @Override
     public E selectListById(String id) {
+        initQueryObj();
         JPAQuery jpaQuerySelectById = getJpaQuerySelectById(id);
         return (E) jpaQuerySelectById.fetchOne();
     }
