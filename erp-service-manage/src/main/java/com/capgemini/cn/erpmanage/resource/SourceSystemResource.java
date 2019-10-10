@@ -34,6 +34,7 @@ public class SourceSystemResource {
         return sourceSystemService.alllist();
     }
 
+    /*****此处都是测试接口****/
     @ApiOperation(value = "allList")
     @GetMapping(value = "allList", produces = "application/json")
     public DataResponse<List<RuleTypeVo>> typeAllList() {
