@@ -1,5 +1,6 @@
 package com.capgemini.cn.erpmanage.service.impl;
 
+import com.capgemini.cn.core.response.DataResponse;
 import com.capgemini.cn.erp.domain.*;
 import com.capgemini.cn.erp.vo.*;
 import com.capgemini.cn.erpmanage.service.AccountingShareRuleService;
@@ -14,8 +15,9 @@ public class AccountingShareRuleServiceImpl extends BaseService<QAccountingShare
 
     @Override
     protected JPAQuery getJpaQuerySelectById(String id) {
-
-        return null;
+        JPAQuery<AccountingShareRuleEntity> query =
+                new JPAQuery<AccountingShareRuleEntity>(em).from(getQuery()).where(getQuery().id.eq(id));
+        return query;
     }
 
     @Override
@@ -69,5 +71,12 @@ public class AccountingShareRuleServiceImpl extends BaseService<QAccountingShare
             shareRuleVos.add(shareRuleVo);
         }
         return shareRuleVos;
+    }
+
+    @Override
+    public DataResponse<String> delete(String id) {
+        AccountingShareRuleEntity shareRuleEntity = super.selectListById(id);
+        em.remove(shareRuleEntity);
+        return new DataResponse<>();
     }
 }

@@ -53,5 +53,15 @@ public class SourceSystemResource {
         return response;
     }
 
+    @ApiOperation(value = "deleteAsr")
+    @GetMapping(value = "deleteAsr", produces = "application/json")
+    public DataResponse<String> deleteAsr(String id) {
+
+
+        return accountingShareRuleService.delete(id);
+    }
+
+
+
 
 }
