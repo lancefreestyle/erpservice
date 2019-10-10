@@ -27,6 +27,7 @@ public class AccountingShareRuleServiceImpl extends BaseService<QAccountingShare
     private QSourceSystemEntity qSourceSystemEntity= QSourceSystemEntity.sourceSystemEntity;
     private QBusinessTypeEntity qBusinessTypeEntity=QBusinessTypeEntity.businessTypeEntity;
     private QDataTemplate qDataTemplate=QDataTemplate.dataTemplate;
+    private QSystemBusinessTypeEntity qSystemBusinessTypeEntity=QSystemBusinessTypeEntity.systemBusinessTypeEntity;
 
     @Override
     protected QAccountingShareRuleEntity setQueryObj() {
@@ -119,22 +120,11 @@ public class AccountingShareRuleServiceImpl extends BaseService<QAccountingShare
 
         ruleTitleEntity.setId(ruleTitleVo.getId());
         SystemBusinessTypeVo systemBusinessTypeVo = ruleTitleVo.getSystemBusinessTypeVo();
-        SystemBusinessTypeEntity systemBusinessTypeEntity=new SystemBusinessTypeEntity();
-        systemBusinessTypeEntity.setId(systemBusinessTypeVo.getId());
 
-        BusinessTypeVo businessTypeVo = systemBusinessTypeVo.getBusinessTypeVo();
-        SourceSystemVo sourceSystemVo = systemBusinessTypeVo.getSourceSystemVo();
+        JPAQuery<SystemBusinessTypeEntity> sbtJquery=new JPAQuery<SystemBusinessTypeEntity>(em).from(qSystemBusinessTypeEntity);
 
-        JPAQuery<BusinessTypeEntity> btPAQuery=new JPAQuery<BusinessTypeEntity>(em).from(qBusinessTypeEntity);
-        btPAQuery.where(qBusinessTypeEntity.id.eq(businessTypeVo.getId()));
-        BusinessTypeEntity businessTypeEntity = btPAQuery.fetchOne();
-
-        JPAQuery<SourceSystemEntity> ssJPAQuery=new JPAQuery<SourceSystemEntity>(em).from(qSourceSystemEntity);
-        ssJPAQuery.where(qSourceSystemEntity.id.eq(sourceSystemVo.getId()));
-        SourceSystemEntity sourceSystemEntity = ssJPAQuery.fetchOne();
-
-        systemBusinessTypeEntity.setBusinessTypeEntity(businessTypeEntity);
-        systemBusinessTypeEntity.setSourceSystemEntity(sourceSystemEntity);
+        sbtJquery.where(qSystemBusinessTypeEntity.id.eq(systemBusinessTypeVo.getId()));
+        SystemBusinessTypeEntity systemBusinessTypeEntity = sbtJquery.fetchOne();
 
         ruleTitleEntity.setSystemBusinessType(systemBusinessTypeEntity);
 
