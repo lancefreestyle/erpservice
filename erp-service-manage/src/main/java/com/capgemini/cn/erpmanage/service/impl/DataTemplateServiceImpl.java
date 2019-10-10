@@ -67,6 +67,25 @@ public class DataTemplateServiceImpl implements DataTemplateService {
 	}
 
 	@Override
+	public DataResponse<List<DataTemplateVo>> listAll() {
+		DataResponse<List<DataTemplateVo>> result = new DataResponse<List<DataTemplateVo>>();
+		JPAQuery<DataTemplate> query = new JPAQuery<DataTemplate>(em).from(qDataTemplate);
+		List<DataTemplate> list = query.fetch();
+		List<DataTemplateVo> resultList = new ArrayList<DataTemplateVo>();
+		if (list != null && list.size() > 0) {
+			DataTemplateVo vo = null;
+			for (DataTemplate entity : list) {
+				vo = new DataTemplateVo();
+				BeanUtils.copyProperties(entity, vo);
+				resultList.add(vo);
+			}
+		}
+		result.setDataStatus(DataStatus.SUCCESS);
+		result.setResponse(resultList);
+		return result;
+	}
+
+	@Override
 	@Transactional
 	public DataResponse add(DataTemplateVo dataTemplateVo)
 	{

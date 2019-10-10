@@ -9,6 +9,8 @@ public interface DataTemplateService {
 
 	public DataResponse<List<DataTemplateVo>> list(DataTemplateQueryVo dataTemplateQueryVo);
 
+	public DataResponse<List<DataTemplateVo>> listAll();
+
 	public DataResponse add(DataTemplateVo dataTemplateVo);
 
 	public DataResponse update(DataTemplateVo dataTemplateVo);

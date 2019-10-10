@@ -77,6 +77,32 @@ public class ConditionServiceImpl implements ConditionService {
 	}
 
 	@Override
+	public DataResponse<List<ConditionVo>> listAll() {
+		// 返回的结果使用AlarmContactVo实例
+		DataResponse<List<ConditionVo>> result = new DataResponse<List<ConditionVo>>();
+		JPAQuery<ConditionRule> query = new JPAQuery<ConditionRule>(em).from(qCondition);
+		// 根据id正序排列
+		query.orderBy(qCondition.id.asc());
+		List<ConditionRule> list = query.fetch();
+		List<ConditionVo> resultList = new ArrayList<ConditionVo>();
+		if (list != null && list.size() > 0) {
+			ConditionVo vo = null;
+			for (ConditionRule entity : list) {
+				vo = new ConditionVo();
+				BeanUtils.copyProperties(entity, vo);
+				if (StringUtils.isNotBlank(entity.getEnabled()) && "false".equals(entity.getEnabled())) {
+					vo.setEnabled(false);
+				}
+				resultList.add(vo);
+			}
+		}
+		result.setDataStatus(DataStatus.SUCCESS);
+		result.setResponse(resultList);
+		return result;
+	}
+
+
+	@Override
 	public DataResponse<List<KeyValueVo>> getConditions(ConditionQueryVo queryVo) {
 		DataResponse<List<KeyValueVo>> result = new DataResponse<List<KeyValueVo>>();
 		JPAQuery<ConditionRule> query = new JPAQuery<ConditionRule>(em).from(qCondition);

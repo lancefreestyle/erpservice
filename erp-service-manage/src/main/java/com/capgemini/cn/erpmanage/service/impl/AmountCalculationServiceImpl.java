@@ -76,6 +76,31 @@ public class AmountCalculationServiceImpl implements AmountCalculationService {
 	}
 
 	@Override
+	public DataResponse<List<AmountCalculationVo>> listAll() {
+		// 返回的结果使用AlarmContactVo实例
+		DataResponse<List<AmountCalculationVo>> result = new DataResponse<List<AmountCalculationVo>>();
+		JPAQuery<AmountCalculation> query = new JPAQuery<AmountCalculation>(em).from(qAmountCalculation);
+		// 根据id正序排列
+		query.orderBy(qAmountCalculation.id.asc());
+		List<AmountCalculation> list = query.fetch();
+		List<AmountCalculationVo> resultList = new ArrayList<AmountCalculationVo>();
+		if (list != null && list.size() > 0) {
+			AmountCalculationVo vo = null;
+			for (AmountCalculation entity : list) {
+				vo = new AmountCalculationVo();
+				BeanUtils.copyProperties(entity, vo);
+				if (StringUtils.isNotBlank(entity.getEnabled()) && "false".equals(entity.getEnabled())) {
+					vo.setEnabled(false);
+				}
+				resultList.add(vo);
+			}
+		}
+		result.setDataStatus(DataStatus.SUCCESS);
+		result.setResponse(resultList);
+		return result;
+	}
+
+	@Override
 	public DataResponse<List<KeyValueVo>> getCalculations(AmountCalculationQueryVo queryVo) {
 		DataResponse<List<KeyValueVo>> result = new DataResponse<List<KeyValueVo>>();
 		JPAQuery<AmountCalculation> query = new JPAQuery<AmountCalculation>(em).from(qAmountCalculation);
