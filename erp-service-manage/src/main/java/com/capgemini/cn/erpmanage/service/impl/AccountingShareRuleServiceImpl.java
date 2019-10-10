@@ -3,6 +3,7 @@ package com.capgemini.cn.erpmanage.service.impl;
 import com.capgemini.cn.erp.domain.*;
 import com.capgemini.cn.erp.vo.*;
 import com.capgemini.cn.erpmanage.service.AccountingShareRuleService;
+import com.capgemini.cn.erpmanage.util.DateUtil;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -58,14 +59,18 @@ public class AccountingShareRuleServiceImpl extends BaseService<QAccountingShare
             ruleTitleVo.setId(ruleTitle.getId());
             ruleTitleVo.setSystemBusinessTypeVo(sbTypeVO);
             ruleTitleVo.setDataTemplateVo(templateVo);
+            ruleTitleVo.setBeginDate(DateUtil.toDay(ruleTitle.getBeginDate()));
+            ruleTitleVo.setEndDate(DateUtil.toDay(ruleTitle.getEndDate()));
             RuleTypeVo ruleTypeVo=new RuleTypeVo();
             BeanUtils.copyProperties(ruleType,ruleTypeVo);
 
 
 
-            BeanUtils.copyProperties(shareRuleEntity,shareRuleVo,"ruleTitle","ruleType");
+            BeanUtils.copyProperties(shareRuleEntity,shareRuleVo,"ruleTitle","ruleType", "beginDate", "endDate");
             shareRuleVo.setRuleTitleVo(ruleTitleVo);
             shareRuleVo.setRuleTypeVo(ruleTypeVo);
+            shareRuleVo.setBeginDate(DateUtil.toDay(shareRuleEntity.getBeginDate()));
+            shareRuleVo.setEndDate(DateUtil.toDay(shareRuleEntity.getEndDate()));
             shareRuleVos.add(shareRuleVo);
         }
         return shareRuleVos;

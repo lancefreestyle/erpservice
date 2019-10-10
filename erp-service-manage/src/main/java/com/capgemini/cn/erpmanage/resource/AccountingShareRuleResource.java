@@ -3,6 +3,7 @@ package com.capgemini.cn.erpmanage.resource;
 import com.capgemini.cn.core.commons.BaseController;
 import com.capgemini.cn.core.response.DataResponse;
 import com.capgemini.cn.erp.vo.*;
+import com.capgemini.cn.erpmanage.service.AccountingShareRuleService;
 import com.capgemini.cn.erpmanage.service.DataTemplateService;
 import com.capgemini.cn.erpmanage.service.SourceSystemService;
 import io.swagger.annotations.ApiOperation;
@@ -21,6 +22,8 @@ public class AccountingShareRuleResource extends BaseController {
     private SourceSystemService sourceSystemService;
     @Autowired
     private DataTemplateService dataTemplateService;
+    @Autowired
+    private AccountingShareRuleService accountingShareRuleService;
 
     @ApiOperation(value = "init")
     @GetMapping(value = "init", produces = "application/json")
@@ -46,14 +49,12 @@ public class AccountingShareRuleResource extends BaseController {
         return null;
     }
 
-    // 会计分摊规则查询接口
     @ApiOperation(value = "list")
     @GetMapping(value = "list", produces = "application/json")
-    public DataResponse<AccountingShareRuleVo> list() {
-        AccountingShareRuleVo vo = new AccountingShareRuleVo();
-        // TODO
-        DataResponse<AccountingShareRuleVo> result = new DataResponse<AccountingShareRuleVo>();
-        result.setResponse(vo);
+    public DataResponse<List<AccountingShareRuleVo>> list() {
+        List<AccountingShareRuleVo> accountingShareRuleVos = accountingShareRuleService.selectList();
+        DataResponse<List<AccountingShareRuleVo>> result = new DataResponse<List<AccountingShareRuleVo>>();
+        result.setResponse(accountingShareRuleVos);
         return result;
     }
 
