@@ -41,13 +41,13 @@ public class RevenueShareRuleResource extends BaseController {
         List<SystemBusinessTypeVo> systemBusinessTypeVos = sourceSystemService.alllist().getResponse();
         vo.setSystemBusinessTypeVos(systemBusinessTypeVos);
 
-        List<DataTemplateVo> dataTemplateVos = dataTemplateService.list(new DataTemplateQueryVo()).getResponse();
+        List<DataTemplateVo> dataTemplateVos = dataTemplateService.listAll().getResponse();
         vo.setDataTemplateVos(dataTemplateVos);
 
-        List<ConditionVo>  conditionVos= conditionService.list(new ConditionQueryVo()).getResponse();
+        List<ConditionVo>  conditionVos= conditionService.listAll().getResponse();
         vo.setConditionVos(conditionVos);
 
-        List<AmountCalculationVo> amountCalculationVos  = amountCalculationService.list(new AmountCalculationQueryVo()).getResponse();
+        List<AmountCalculationVo> amountCalculationVos  = amountCalculationService.listAll().getResponse();
         vo.setAmountCalculationVos(amountCalculationVos);
 
         List<PartnerGroupVo> partnerGroupVos = partnerGroupService.list(new PartnerGroupQueryVo()).getResponse();

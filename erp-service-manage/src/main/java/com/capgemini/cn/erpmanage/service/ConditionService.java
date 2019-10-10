@@ -14,6 +14,8 @@ import com.capgemini.cn.erp.vo.KeyValueVo;
 public interface ConditionService {
 	
     DataResponse<List<ConditionVo>> list(ConditionQueryVo queryVo);
+
+    DataResponse<List<ConditionVo>> listAll();
     
     DataResponse<List<KeyValueVo>> getConditions(ConditionQueryVo queryVo);
 

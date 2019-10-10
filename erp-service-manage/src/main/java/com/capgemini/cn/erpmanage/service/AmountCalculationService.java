@@ -16,6 +16,8 @@ public interface AmountCalculationService {
 
 	DataResponse<List<AmountCalculationVo>> list(AmountCalculationQueryVo queryVo);
 
+	DataResponse<List<AmountCalculationVo>> listAll();
+
 	DataResponse<List<KeyValueVo>> getCalculations(AmountCalculationQueryVo queryVo);
 
 	DataResponse<AmountCalculationVo> detail(AmountCalculationQueryVo queryVo);

@@ -1,6 +1,7 @@
 package com.capgemini.cn.erpmanage.service.impl;
 
 import com.capgemini.cn.core.response.DataResponse;
+import com.capgemini.cn.core.response.DataStatus;
 import com.capgemini.cn.erp.domain.*;
 import com.capgemini.cn.erp.vo.BusinessTypeVo;
 import com.capgemini.cn.erp.vo.SourceSystemVo;
@@ -37,6 +38,7 @@ public class SourceSystemServiceImpl implements SourceSystemService {
             systemBusinessTypeVos.add(systemBusinessTypeVo);
         });
         DataResponse<List<SystemBusinessTypeVo>> result=new DataResponse<>();
+        result.setDataStatus(DataStatus.SUCCESS);
         result.setResponse(systemBusinessTypeVos);
         return result;
     }
