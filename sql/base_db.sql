@@ -417,7 +417,7 @@ CREATE TABLE `source_system`  (
   `create_date` datetime DEFAULT NULL COMMENT '创建日期',
   `update_date` datetime DEFAULT NULL COMMENT '修改日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `business_type`; ##业务类型
 CREATE TABLE `business_type`  (
@@ -427,7 +427,7 @@ CREATE TABLE `business_type`  (
   `create_date` datetime DEFAULT NULL COMMENT '创建日期',
   `update_date` datetime DEFAULT NULL COMMENT '修改日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `system_business_type`; ##来源系统业务类型
 CREATE TABLE `system_business_type`  (
@@ -437,7 +437,7 @@ CREATE TABLE `system_business_type`  (
   `create_date` datetime DEFAULT NULL COMMENT '创建日期',
   `update_date` datetime DEFAULT NULL COMMENT '修改日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `rule_title`; ##规则标题
 CREATE TABLE `rule_title`  (
@@ -449,7 +449,7 @@ CREATE TABLE `rule_title`  (
   `create_date` datetime DEFAULT NULL COMMENT '创建日期',
   `update_date` datetime DEFAULT NULL COMMENT '修改日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `rule_type`; ##规则类型
 CREATE TABLE `rule_type`  (
@@ -459,7 +459,7 @@ CREATE TABLE `rule_type`  (
   `create_date` datetime DEFAULT NULL COMMENT '创建日期',
   `update_date` datetime DEFAULT NULL COMMENT '修改日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `revenue_share_rule`; ##收入共享规则
 CREATE TABLE `revenue_share_rule` (
@@ -479,7 +479,7 @@ CREATE TABLE `revenue_share_rule` (
   `create_date` datetime DEFAULT NULL COMMENT '创建日期',
   `update_date` datetime DEFAULT NULL COMMENT '修改日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `revenue_share_data`; ##收入共享数据
 CREATE TABLE `revenue_share_data`  (
@@ -498,7 +498,7 @@ CREATE TABLE `revenue_share_data`  (
   `trace_date` datetime DEFAULT NULL COMMENT '交易日期',
   `update_date` datetime DEFAULT NULL COMMENT '修改日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `revenue_share_settlement`; ##收入共享结算
 CREATE TABLE `revenue_share_settlement` (
@@ -510,7 +510,7 @@ CREATE TABLE `revenue_share_settlement` (
   `create_date` datetime DEFAULT NULL COMMENT '创建日期',
   `update_date` datetime DEFAULT NULL COMMENT '修改日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `accounting_share_rule`; ##会计分摊规则
@@ -526,7 +526,7 @@ CREATE TABLE `accounting_share_rule` (
   `create_date` datetime DEFAULT NULL COMMENT '创建日期',
   `update_date` datetime DEFAULT NULL COMMENT '修改日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `revenue_sale_data`; ##收入销售数据
 CREATE TABLE `revenue_sale_data` (
@@ -551,7 +551,7 @@ CREATE TABLE `revenue_sale_data` (
   `create_date` datetime DEFAULT NULL COMMENT '创建日期',
   `update_date` datetime DEFAULT NULL COMMENT '修改日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
