@@ -28,7 +28,7 @@ public class AccountingShareRuleEntity {
         this.id = id;
     }
 
-    @OneToOne(cascade={CascadeType.REFRESH,CascadeType.MERGE})
+    @OneToOne(cascade={CascadeType.REFRESH,CascadeType.MERGE,CascadeType.PERSIST})
     @JoinColumn(name = "rule_title_id")
     public RuleTitleEntity getRuleTitle() {
         return ruleTitle;
@@ -38,7 +38,7 @@ public class AccountingShareRuleEntity {
         this.ruleTitle = ruleTitle;
     }
 
-    @OneToOne(cascade={CascadeType.REFRESH,CascadeType.MERGE})
+    @OneToOne(cascade={CascadeType.REFRESH,CascadeType.MERGE,CascadeType.PERSIST    })
     @JoinColumn(name = "rule_type_id")
     public RuleTypeEntity getRuleType() {
         return ruleType;

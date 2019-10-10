@@ -5,13 +5,12 @@ import com.capgemini.cn.erp.vo.AccountingShareRuleVo;
 import com.capgemini.cn.erp.vo.RuleTypeVo;
 import com.capgemini.cn.erp.vo.SystemBusinessTypeVo;
 import com.capgemini.cn.erpmanage.service.AccountingShareRuleService;
+import com.capgemini.cn.erpmanage.service.RevenueSaleDataService;
 import com.capgemini.cn.erpmanage.service.RuleTypeService;
 import com.capgemini.cn.erpmanage.service.SourceSystemService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +25,8 @@ public class SourceSystemResource {
 
     @Autowired
     AccountingShareRuleService accountingShareRuleService;
+    @Autowired
+    RevenueSaleDataService revenueSaleDataService;
 
     @ApiOperation(value = "list")
     @GetMapping(value = "list", produces = "application/json")
@@ -60,6 +61,13 @@ public class SourceSystemResource {
 
 
         return accountingShareRuleService.delete(id);
+    }
+
+    @ApiOperation(value = "deleteAsr")
+    @PostMapping(value = "addsharerule", produces = "application/json", consumes = "application/json")
+    public DataResponse<String> addShareRule(@RequestBody AccountingShareRuleVo shareRuleVo) {
+
+        return accountingShareRuleService.save(shareRuleVo);
     }
 
 

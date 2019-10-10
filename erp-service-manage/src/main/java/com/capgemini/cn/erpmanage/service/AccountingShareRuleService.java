@@ -10,4 +10,6 @@ public interface AccountingShareRuleService {
     List<AccountingShareRuleVo> selectList();
 
     DataResponse<String> delete(String id);
+
+    DataResponse<String> save(AccountingShareRuleVo accountingShareRuleVo);
 }
