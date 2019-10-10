@@ -65,7 +65,7 @@ public class RevenueShareRuleResource extends BaseController {
     @PostMapping(value = "create", consumes = "application/json", produces = "application/json")
     public DataResponse create(
             @ApiParam(value = "接收数据参数", required = true) @RequestBody @Valid RevenueShareRuleVo vo) {
-        // TODO service
+        // TODO
         return null;
     }
 }

@@ -543,7 +543,7 @@ CREATE TABLE `revenue_sale_data` (
   `share_count` int NOT NULL COMMENT '未分摊次数',
   `pay_type` varchar(100) NOT NULL COMMENT '支付方式',
   `business_department` varchar(100) NOT NULL COMMENT '业务部门',
-  `profit_center` datetime DEFAULT NULL COMMENT '利润中心',
+  `profit_center` varchar(100) DEFAULT NULL COMMENT '利润中心',
   `trace_begin_date` datetime DEFAULT NULL COMMENT '交易开始日期',
   `trace_end_date` datetime DEFAULT NULL COMMENT '交易结束日期',
   `tally_begin_date` datetime DEFAULT NULL COMMENT '记账开始日期',

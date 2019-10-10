@@ -9,4 +9,6 @@ import java.util.List;
 public interface SourceSystemService {
 
     DataResponse<List<SystemBusinessTypeVo>> alllist();
+
+    DataResponse<SystemBusinessTypeVo> getById(String id);
 }

@@ -58,12 +58,10 @@ public class AccountingShareRuleResource extends BaseController {
         return result;
     }
 
-    // 会计分摊规则删除接口
     @ApiOperation(value = "delete/{id}")
-    @DeleteMapping(value = "delete", produces = "application/json")
+    @DeleteMapping(value = "delete/{id}", produces = "application/json")
     public DataResponse delete(
             @PathVariable(value = "id", required = true) String id) {
-        // TODO
-        return dataTemplateService.delete(id);
+        return accountingShareRuleService.delete(id);
     }
 }

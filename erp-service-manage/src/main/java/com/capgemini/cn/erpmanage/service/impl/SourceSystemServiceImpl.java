@@ -42,4 +42,19 @@ public class SourceSystemServiceImpl implements SourceSystemService {
         result.setResponse(systemBusinessTypeVos);
         return result;
     }
+
+    @Override
+    public DataResponse<SystemBusinessTypeVo> getById(String id) {
+        JPAQuery<SystemBusinessTypeEntity>  jpaQuery=new JPAQuery<SystemBusinessTypeEntity>(em).from(qSystemBusinessTypeEntity);
+        SystemBusinessTypeEntity entity = jpaQuery.where(qSystemBusinessTypeEntity.id.eq(id)).fetchOne();
+        BusinessTypeEntity businessType = entity.getBusinessTypeEntity();
+        SourceSystemEntity sourceSystem = entity.getSourceSystemEntity();
+        SourceSystemVo sourceSystemVo = new SourceSystemVo(sourceSystem.getId(), sourceSystem.getSourceSystemCode(), sourceSystem.getSourceSystemName(), sourceSystem.getCreateDate(), sourceSystem.getUpdateDate());
+        BusinessTypeVo businessTypeVo = new BusinessTypeVo(businessType.getId(), businessType.getBusinessTypeCode(), businessType.getBusinessTypeName(), businessType.getCreateDate(), businessType.getUpdateDate());
+        SystemBusinessTypeVo systemBusinessTypeVo = new SystemBusinessTypeVo(entity.getId(), sourceSystemVo, businessTypeVo, entity.getCreateDate(), entity.getUpdateDate());
+        DataResponse<SystemBusinessTypeVo> result=new DataResponse<>();
+        result.setDataStatus(DataStatus.SUCCESS);
+        result.setResponse(systemBusinessTypeVo);
+        return result;
+    }
 }

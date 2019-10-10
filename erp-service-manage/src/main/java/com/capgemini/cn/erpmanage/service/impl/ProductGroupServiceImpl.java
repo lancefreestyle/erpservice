@@ -142,14 +142,16 @@ public class ProductGroupServiceImpl implements ProductGroupService {
         return result;
     }
 
-    private ProductGroup queryById(String id) {
+    @Override
+    public ProductGroup queryById(String id) {
         // TODO Auto-generated method stub
         JPAQuery<ProductGroup> query = new JPAQuery<ProductGroup>(em).from(qProductGroup).where(qProductGroup.id.eq(id));
         ProductGroup entity = query.fetchOne();
         return entity;
     }
 
-    private ProductGroupItem queryItemById(String id) {
+    @Override
+    public ProductGroupItem queryItemById(String id) {
         // TODO Auto-generated method stub
         JPAQuery<ProductGroupItem> query = new JPAQuery<ProductGroupItem>(em).from(qproductGroupItem).where(qproductGroupItem.id.eq(id));
         ProductGroupItem entity = query.fetchOne();
