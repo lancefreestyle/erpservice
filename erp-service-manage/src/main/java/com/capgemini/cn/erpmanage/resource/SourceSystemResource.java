@@ -35,6 +35,13 @@ public class SourceSystemResource {
         return sourceSystemService.alllist();
     }
 
+    @ApiOperation(value = "deleteAsr")
+    @PostMapping(value = "addsharerule", produces = "application/json", consumes = "application/json")
+    public DataResponse<String> addShareRule(@RequestBody AccountingShareRuleVo shareRuleVo) {
+
+        return accountingShareRuleService.save(shareRuleVo);
+    }
+
     /*****此处都是测试接口****/
     @ApiOperation(value = "allList")
     @GetMapping(value = "allList", produces = "application/json")
@@ -63,12 +70,7 @@ public class SourceSystemResource {
         return accountingShareRuleService.delete(id);
     }
 
-    @ApiOperation(value = "deleteAsr")
-    @PostMapping(value = "addsharerule", produces = "application/json", consumes = "application/json")
-    public DataResponse<String> addShareRule(@RequestBody AccountingShareRuleVo shareRuleVo) {
 
-        return accountingShareRuleService.save(shareRuleVo);
-    }
 
 
 
