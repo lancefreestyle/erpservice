@@ -24,6 +24,10 @@ public class AccountingShareRuleServiceImpl extends BaseService<QAccountingShare
         return query;
     }
 
+    private QSourceSystemEntity qSourceSystemEntity= QSourceSystemEntity.sourceSystemEntity;
+    private QBusinessTypeEntity qBusinessTypeEntity=QBusinessTypeEntity.businessTypeEntity;
+    private QDataTemplate qDataTemplate=QDataTemplate.dataTemplate;
+
     @Override
     protected QAccountingShareRuleEntity setQueryObj() {
         return QAccountingShareRuleEntity.accountingShareRuleEntity;
@@ -115,29 +119,31 @@ public class AccountingShareRuleServiceImpl extends BaseService<QAccountingShare
 
         ruleTitleEntity.setId(ruleTitleVo.getId());
         SystemBusinessTypeVo systemBusinessTypeVo = ruleTitleVo.getSystemBusinessTypeVo();
+        SystemBusinessTypeEntity systemBusinessTypeEntity=new SystemBusinessTypeEntity();
+        systemBusinessTypeEntity.setId(systemBusinessTypeVo.getId());
+
         BusinessTypeVo businessTypeVo = systemBusinessTypeVo.getBusinessTypeVo();
         SourceSystemVo sourceSystemVo = systemBusinessTypeVo.getSourceSystemVo();
 
-        BusinessTypeEntity businessTypeEntity=new BusinessTypeEntity();
-        SourceSystemEntity sourceSystemEntity=new SourceSystemEntity();
-        BeanUtils.copyProperties(businessTypeVo,businessTypeEntity);
-        BeanUtils.copyProperties(sourceSystemVo,sourceSystemEntity);
+        JPAQuery<BusinessTypeEntity> btPAQuery=new JPAQuery<BusinessTypeEntity>(em).from(qBusinessTypeEntity);
+        btPAQuery.where(qBusinessTypeEntity.id.eq(businessTypeVo.getId()));
+        BusinessTypeEntity businessTypeEntity = btPAQuery.fetchOne();
 
+        JPAQuery<SourceSystemEntity> ssJPAQuery=new JPAQuery<SourceSystemEntity>(em).from(qSourceSystemEntity);
+        ssJPAQuery.where(qSourceSystemEntity.id.eq(sourceSystemVo.getId()));
+        SourceSystemEntity sourceSystemEntity = ssJPAQuery.fetchOne();
 
-
-        SystemBusinessTypeEntity systemBusinessTypeEntity=new SystemBusinessTypeEntity();
-        systemBusinessTypeEntity.setId(systemBusinessTypeVo.getId());
         systemBusinessTypeEntity.setBusinessTypeEntity(businessTypeEntity);
         systemBusinessTypeEntity.setSourceSystemEntity(sourceSystemEntity);
 
         ruleTitleEntity.setSystemBusinessType(systemBusinessTypeEntity);
-        ruleTitleEntity.setId(ruleTitleVo.getId());
-
 
         DataTemplateVo dataTemplateVo = ruleTitleVo.getDataTemplateVo();
-        DataTemplate dataTemplate=new DataTemplate();
-        BeanUtils.copyProperties(dataTemplateVo,dataTemplate);
 
+        JPAQuery<DataTemplate> dTemplateQuery=new JPAQuery<DataTemplate>(em).from(qDataTemplate);
+
+        dTemplateQuery.where(qDataTemplate.id.eq(dataTemplateVo.getId()));
+        DataTemplate dataTemplate = dTemplateQuery.fetchOne();
 
         ruleTitleEntity.setDataTemplate(dataTemplate);
 
@@ -146,7 +152,7 @@ public class AccountingShareRuleServiceImpl extends BaseService<QAccountingShare
 
         shareRuleEntity.setRuleTitle(ruleTitleEntity);
         shareRuleEntity.setRuleType(ruleTypeEntity);
-        em.persist(shareRuleEntity);
+        em.merge(shareRuleEntity);
 
         return new DataResponse<>();
     }
